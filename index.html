@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <link id="stylesheet" rel="stylesheet" type="text/css" href="light.css">
+    <link id="mystylesheet" rel="stylesheet" type="text/css" href="light.css">
 
 </head>
 
@@ -18,12 +18,23 @@
     <div id="box">
         <h2>Hi, You can change day into night and night into day</h2>
         <hr>
-        <button class="btn btn-light">Light Mode</button>
-        <button class="btn btn-dark">Dark Mode</button>
+        <button class="btn btn-light" onclick="swapStyle('light.css')">Light Mode</button>
+        <button class="btn btn-dark" onclick="swapStyle('dark.css')">Dark Mode</button>
     </div>
 
     <script type="text/javascript">
-        var setTheme
+        var setTheme = localStorage.getItem('theme')
+
+        if (setTheme == null) {
+            swapStyle('light.css')
+        } else {
+            swapStyle(setTheme)
+        }
+
+        function swapStyle(sheet) {
+            document.getElementById('mystylesheet').href = sheet
+            localStorage.setItem('theme', sheet)
+        }
     </script>
 
 </body>
